@@ -1,5 +1,5 @@
 # 我的《Javascript忍者秘籍》学习笔记
-## 函数
+## 第四章 函数
 ### 函数的length属性
 * 和`arruments.length`不同，`function`的`length`属性是指函数定义时，声明的需要的参数个数
 * `arguments.length`则是函数具体执行时，真正被传入到函数中的参数个数。
@@ -14,3 +14,10 @@
 
     assert(count == 3, "count仍然可用");
 ```
+### 判断一个object是不是个函数
+``` javascript
+    function isFunction(fn) {
+        return Object.prototype.toString.call(fn) == "[Object Function]";
+    }
+```
+## 第五章 闭包
