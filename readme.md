@@ -12,5 +12,5 @@
         // do something...
     }
 
-    assert(count == 3, "count仍然可用“);
+    assert(count == 3, "count仍然可用");
 ```
