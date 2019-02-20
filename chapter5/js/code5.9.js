@@ -26,13 +26,15 @@ Function.prototype.curry = function () {
     }
 }
 
-String.prototype.csv = String.prototype.split.curry("/,\s*/");
+/*
+String.prototype.csv = String.prototype.split.curry("/,\s");
 var results = ("Mugan, Jin, Fuu").csv();
 assert(results[0] == "Mugan" &&
     results[1] == "Jin" &&
     results[2] == "Fuu",
     "The text value were split properly"
 );
+*/
 
 Function.prototype.partial = function () {
     var fn = this;
@@ -47,5 +49,15 @@ Function.prototype.partial = function () {
         }
 
         return fn.apply(this, args);
-    }
-}
+    };
+};
+
+var delay = setTimeout.partial(undefined, 1000);
+delay(function () {
+    assert(true, "A call to this function will be delayed 1000 ms"); 
+});
+
+var bindClick = document.body.addEventListener.partial('click', undefined, false);
+bindClick(function () {
+    assert(true, "Click event bound via curried function");
+});
