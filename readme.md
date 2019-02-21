@@ -95,3 +95,6 @@
     var ninja = new Ninja();
     var ninja2 = new ninja.constructor();   // 同样可行
 ```
+### 疑难陷阱
+* 很多时候开发者会遍历一个对象的所有属性，如果你轻易地在`Object`的原形上添加或者改变属性，这对其它开发者是不尊重。
+* `hasOwnProperty`方法可以判断一个属性是不是实例本身的(true)，如果是通过原型定义的，将会返回false

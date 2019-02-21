@@ -15,21 +15,24 @@
 </head>
 
 <body>
-    <div>DIV 0</div>
-    <div>DIV 1</div>
+    <div>
+        <div id="a">I'm going to be removed</div>
+        <div id="b">Me too!</div>
+    </div>
+    <ul id="results"></ul>
 
     <script type="text/javascript">
-        var divs = document.getElementsByTagName('div');
-/*
-        for (var i = 0; i < divs.length; i++) {
-            divs[i].addEventListener('click', () => alert("divs #" + i + " was clicked."), false);// 数值i因为会被更新到2，所以点击的时候都会是2。
-        }
-*/
-        for (var i = 0; i < divs.length; i++) {
-            (function (n) {
-                divs[i].addEventListener('click', () => alert("divs #" + n + " was clicked."), false);
-            })(i);
-        }
+        HTMLElement.prototype.remove = function() {
+            if (this.parentNode)
+                this.parentNode.removeChild(this);
+        };
+
+        var a = document.getElementById("a");
+        a.parentNode.removeChild(a);
+        document.getElementById("b").remove();
+
+        assert(!document.getElementById('a'), "a is gone!");
+        assert(!document.getElementById('b'), "b is gone too!");
     </script>
 </body>
 
