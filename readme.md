@@ -95,3 +95,5 @@
     var ninja = new Ninja();
     var ninja2 = new ninja.constructor();   // 同样可行
 ```
+
+test
