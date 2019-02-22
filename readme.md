@@ -31,6 +31,7 @@
         console.log("Test message");
     }
 ```
+
 ### 作用域
 * 函数的作用域是在它所定义的代码块中，所以只要在同一个代码块中，函数使用可以在函数定义之前。
 * 相对应的，变量的作用域是从它被定义的地方开始，所以变量得先定义，之后的代码才能使用，**但特别的，变量的作用域结束于它所在的函数块，而不是代码块，所以，在if代码块中定义好的变量，在脱离if块以后的相同函数块内仍然是可以使用的**
@@ -75,11 +76,14 @@
     var tooLate = 'ronin';
     later(); // innerFunction中的断言成功！！可以访问到tooLate变量
 ```
+
 但是，把later()执行的方法放在tooLate定义之前，结果就不一样了
+
 ```javascript
     later();    // 这种情况下，innerFunction中的断言就失败了！无法访问到tooLate变量
     var tooLate = 'ronin';
 ```
+
 上面的这个例子明显和书里说的有出入，书中说
 >作用域之外的所有变量，即使是在函数声明之后的那些声明，也都包含在闭包中。
 
@@ -95,7 +99,6 @@
     var ninja = new Ninja();
     var ninja2 = new ninja.constructor();   // 同样可行
 ```
-<<<<<<< HEAD
 ### 疑难陷阱
 * 很多时候开发者会遍历一个对象的所有属性，如果你轻易地在`Object`的原形上添加或者改变属性，这对其它开发者是不尊重。
 * `hasOwnProperty`方法可以判断一个属性是不是实例本身的(true)，如果是通过原型定义的，将会返回false\
@@ -108,7 +111,3 @@
     assert(!Test(), "We didn't instantiate, so it returns false");
     assert(new Test(), "We did instantiate, returning true");
 ```
-=======
-
-test
->>>>>>> 508478abb59cbe1b9c11e396c0a39209e717c884
