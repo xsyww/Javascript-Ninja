@@ -15,11 +15,10 @@
                 superPattern.test(properties[name]) ?
                 (function (name, fn) {
                     return function () {
-                        var tmp = this._super;
-                        this._super = _super[name];
-
-                        var ret = fn.apply(this, arguments);
-                        this._super = tmp;
+                        var tmp = this._super;                  // 保存旧 _super
+                        this._super = _super[name];             // 替换_super
+                        var ret = fn.apply(this, arguments);    // 执行替换后的_super
+                        this._super = tmp;                      // 还原旧_super
 
                         return ret;
                     };
@@ -29,10 +28,10 @@
 
         function Class() {
             // All construction is actually done in init method
-            if (!initializing && this.init)
+            if (!initializing && this.init) // init 方法可能含有各种代价高昂的初始化功能，如果仅仅是创建一个实例作为原型的话，不需要执行init方法。
                 this.init.apply(this, arguments);
         }
-        
+
         Class.prototype = proto;
         Class.constructor = Class;
         Class.subClass = arguments.callee;
@@ -40,8 +39,6 @@
         return Class;
     };
 })();
-
-
 
 var Person = Object.subClass({
     init: function (isDancing) {
